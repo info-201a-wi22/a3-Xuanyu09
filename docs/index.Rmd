@@ -1,0 +1,34 @@
+---
+title: "index.Rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, echo = TRUE, message =FALSE)
+
+```
+In this assignment, I am going to analyze the incarceration trends in the United States. We used the data from Vera institute of justice,  data includes County- and jurisdiction-level jail data (1970-2018) and prison data (1983-2016).
+I analyzed five variables, which are each race’s jail percentage. Since I am curious about how will the incarceration percentage varies among five different races. I did not use the percentage data that the dataset provided, but I grouped the data by years and states and calculated a new incarceration rate for each race. 
+
+```{r}
+source("../source/analysis.R")
+```
+
+```{r}
+library(ggplot2)
+library(usmap)
+plot_usmap(regions = "states", data = in_2013, values="black_jail_percent") + 
+  labs(title = "black jail percentage in US States in 2013")+ scale_fill_continuous(low = "white", high = "red") + 
+  theme(legend.position = "right")
+```
+
+The scatter plot graph shows the incarceration rate trend over time from 2000 to 2013. To include this chart, I want to demonstrate how incarceration rates vary over years if there was an obvious increase or decrease in certain periods. In this chart, each color represents one race. We can see that black has the highest incarceration rate, and Asian Americans and Pacific Islanders has the lowest. Both Latino and white have a smooth and steady trend of rate over years. But the incarceration rate is decreasing from 2000 to 2013 in the black. While the trend in the native is not clear enough, a slight increase can be observed. 
+
+
+In the QQ plot, I did a comparison between the jail percentage of the black and the white. This graph demonstrates the relationship between two races’ jail percentages if the scatter points did not lie on the diagonal line in the graph, it means that one group tends to have a higher jail percentage. For example, this graph shows that black has a much higher jail percentage compared to white. 
+
+In the map, I demonstrated the incarceration rate of black in each state in the US in 2013. The grey area means that area’s data is not accessible. We can tell that the black in Utah has the highest jail percentage, while other states have a similar percentage that is hard to distinguish.
+
+
+From the analysis, I get the summary data showed that in 2013, the Latino had an average incarceration rate of 0.006157; the native had an average incarceration rate of 0.005488; white had an average incarceration rate of 0.0026042; the black had an average incarceration rate of 0.014222; Asian American and Pacific Islander had an average incarceration rate of 0.0019152. The result shows that black had the highest incarceration rate in 2013, and the trend continued for the following year. Also, I did the summarize barplot about the incarceration rate. In this chart, I analyzed each race’s incarceration rate from 2000 to 2013. The black has the highest jail percentage, and Asian Americans and Pacific Islanders have the lowest. This result is consistent with the previous chart.
+
